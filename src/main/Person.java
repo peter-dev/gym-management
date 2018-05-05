@@ -8,7 +8,12 @@ public class Person {
     private String gender;
 
     public void setName(String name) {
-        this.name = name;
+        int maxLength = 30;
+        if (name != null && name.length() > maxLength) {
+            this.name = name.substring(0,maxLength);
+        } else {
+            this.name = name;
+        }
     }
 
     public void setAddress(String address) {
@@ -16,7 +21,18 @@ public class Person {
     }
 
     public void setGender(String gender) {
-        this.gender = "Unspecified";
+        String defaultGender = "Unspecified";
+        switch (gender) {
+            case "M":
+            case "m":
+            case "F":
+            case "f":
+                this.gender = gender.toUpperCase();
+                break;
+            case "3":
+            default:
+                this.gender = defaultGender;
+        }
     }
 
     public String getName() {
@@ -40,5 +56,13 @@ public class Person {
         this.email = email;
         this.address = address;
         setGender(gender);
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name +
+                "\nEmail: " + email +
+                "\nAddress: " + address +
+                "\nGender: " + gender;
     }
 }
