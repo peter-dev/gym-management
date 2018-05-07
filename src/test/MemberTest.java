@@ -131,7 +131,7 @@ public class MemberTest {
 
     @Nested
     @DisplayName("Constructor tests")
-    class Constructir {
+    class Constructor {
 
         @Nested
         @DisplayName("The height field")
@@ -244,7 +244,7 @@ public class MemberTest {
                         2.0f, 34.9f, "Package 1");
                 assertEquals("Unspecified",
                         member1.getGender(),
-                        "Reset to Unspecigied");
+                        "Reset to Unspecified");
             }
         }
     }

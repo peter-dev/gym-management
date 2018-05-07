@@ -22,14 +22,11 @@ public class Person {
 
     public void setGender(String gender) {
         String defaultGender = "Unspecified";
-        switch (gender) {
+        switch (gender.toUpperCase()) {
             case "M":
-            case "m":
             case "F":
-            case "f":
                 this.gender = gender.toUpperCase();
                 break;
-            case "3":
             default:
                 this.gender = defaultGender;
         }
@@ -52,8 +49,8 @@ public class Person {
     }
 
     public Person(String email, String name, String address, String gender) {
-        setName(name);
         this.email = email;
+        setName(name);
         this.address = address;
         setGender(gender);
     }

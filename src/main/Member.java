@@ -54,16 +54,19 @@ public class Member extends Person {
 
     public Assessment latestAssessment() {
         // TODO
+        // Returns the latest assessment based on last entry (by calendar date).
         return null;
     }
 
     public SortedSet sortedAssessmentDates() {
         // TODO
+        // Returns the assessments dates (as strings) sorted in date order.
         return null;
     }
 
     public void chosenPackage(String chosenPackage) {
         // TODO ABSTRACT
+        // The concrete implementation of this method will be completed in Member subclasses
     }
 
     @Override

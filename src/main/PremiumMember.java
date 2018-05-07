@@ -7,5 +7,8 @@ public class PremiumMember extends Member  {
     @Override
     public void chosenPackage(String packageChoice) {
         // TODO
+
+
+        // The chosenPackage is set to the value passed as a parameter. There is no validation on the entered data
     }
 }

@@ -44,7 +44,7 @@ public class GymUtilityTest {
                 "20, NORMAL",
                 "28, OVERWEIGHT",
                 "32, MODERATELY OBESE",     // previous value MODERATELY OVERWEIGHT
-                "37, SEVERELY OBESE"   // previous value SEVERELY OVERWEIGHT
+                "37, SEVERELY OBESE"        // previous value SEVERELY OVERWEIGHT
         })
         public void normal(float v, String c) {
             String result = GymUtility.determineBMICategory(v);
@@ -58,8 +58,8 @@ public class GymUtilityTest {
                 "16, UNDERWEIGHT",
                 "18.5, NORMAL",
                 "25, OVERWEIGHT",
-                "30, MODERATELY OBESE", // previous value MODERATELY OVERWEIGHT
-                "35, SEVERELY OBESE"    // previous value SEVERELY OVERWEIGHT
+                "30, MODERATELY OBESE",     // previous value MODERATELY OVERWEIGHT
+                "35, SEVERELY OBESE"        // previous value SEVERELY OVERWEIGHT
         })
         public void boundary(float v, String c) {
             String result = GymUtility.determineBMICategory(v);
@@ -75,9 +75,9 @@ public class GymUtilityTest {
         @ParameterizedTest(
                 name = "When gender is {0}, height is {1}m and weight is {2}kg ")
         @CsvSource({
-                "M, 2.0, 93.1",     // previous value 93.2
-                "F, 2.0, 88.6",     // previous value 88.5
-                "Unspecified, 2.0, 88.6"
+                "M, 2.0, 93.1",             // previous value 93.2
+                "F, 2.0, 88.6",             // previous value 88.5
+                "Unspecified, 2.0, 88.6"    // previous value 88.5
         })
         public void normal(String g, float height, float weight) {
             member1.setGender(g);
@@ -111,7 +111,7 @@ public class GymUtilityTest {
             @ParameterizedTest(
                     name = "When gender is {0}, height is {1}m and weight is {2}kg ")
             @CsvSource({
-                    "M, 1.524, 50.0",   // previous value 50.1
+                    "M, 1.524, 50.0",       // previous value 50.1
                     "F, 1.524, 45.5",
                     "Unspecified, 1.524, 45.5"
             })

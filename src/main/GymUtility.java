@@ -71,8 +71,8 @@ public class GymUtility {
 
         // add 2.3kg for each inch over 5 feet (60 inches)
         float calculatedIdeal = baseWeight + (incrementalWeight * (heightInInch - baseHeightInInch));
-        System.out.println("Expected: " + weightInKg + " Result: " + calculatedIdeal);
-        System.out.println("Expected: " + roundFloatTo2Decimal(weightInKg)  + " Result: " + roundFloatTo2Decimal(calculatedIdeal));
+        //System.out.println("Original Expected: " + weightInKg + " Result: " + calculatedIdeal);
+        //System.out.println("Rounded  Expected: " + roundFloatTo2Decimal(weightInKg)  + " Result: " + roundFloatTo2Decimal(calculatedIdeal));
 
         return (roundFloatTo2Decimal(weightInKg) == roundFloatTo2Decimal(calculatedIdeal));
     }

@@ -20,6 +20,8 @@ public class StudentMember extends Member {
     @Override
     public void chosenPackage(String chosenPackage) {
         // TODO
+        // // chosenPackage should be set to the package associated with their collegeName. If there is no package associated with their college, default to “Package 3”
+        // Initially we set this to "Package 3" and we can revisit later
     }
 
     @Override
