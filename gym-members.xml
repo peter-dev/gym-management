@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<object-stream>
+  <list>
+    <Trainer>
+      <name>Bob Harper</name>
+      <email>bob.harper@trainer.com</email>
+      <address>Nashville, Tennessee, U.S.</address>
+      <gender>M</gender>
+      <speciality>Personal Trainer</speciality>
+    </Trainer>
+    <Trainer>
+      <name>Lou Ferrigno</name>
+      <email>lou.ferrigno@trainer.com</email>
+      <address>Brooklyn, New York, U.S.</address>
+      <gender>M</gender>
+      <speciality>Fitness Trainer</speciality>
+    </Trainer>
+    <StudentMember>
+      <name>Piotr Baran</name>
+      <email>piotr.baran@student.com</email>
+      <address>Cork, Ireland</address>
+      <gender>M</gender>
+      <height>2.0</height>
+      <startWeight>80.0</startWeight>
+      <chosenPackage>Package 3</chosenPackage>
+      <assessments>
+        <entry>
+          <string>18/04/25</string>
+          <Assessment>
+            <weight>82.0</weight>
+            <thigh>0.0</thigh>
+            <waist>0.0</waist>
+            <comment>Well done.</comment>
+            <trainer>Bob Harper, Personal Trainer</trainer>
+          </Assessment>
+        </entry>
+      </assessments>
+      <studentId>MIT00001</studentId>
+      <collegeName>MIT</collegeName>
+    </StudentMember>
+    <StudentMember>
+      <name>Tara Baran</name>
+      <email>tara.baran@student.com</email>
+      <address>Cork, Ireland</address>
+      <gender>F</gender>
+      <height>1.6</height>
+      <startWeight>50.0</startWeight>
+      <chosenPackage>WIT</chosenPackage>
+      <assessments>
+        <entry>
+          <string>18/05/05</string>
+          <Assessment>
+            <weight>47.0</weight>
+            <thigh>0.0</thigh>
+            <waist>0.0</waist>
+            <comment>Well done. You achieved your goal.</comment>
+            <trainer>Lou Ferrigno, Fitness Trainer</trainer>
+          </Assessment>
+        </entry>
+        <entry>
+          <string>18/04/10</string>
+          <Assessment>
+            <weight>48.0</weight>
+            <thigh>0.0</thigh>
+            <waist>0.0</waist>
+            <comment>Well done. You are getting there.</comment>
+            <trainer>Lou Ferrigno, Fitness Trainer</trainer>
+          </Assessment>
+        </entry>
+      </assessments>
+      <studentId>WIT00001</studentId>
+      <collegeName>WIT</collegeName>
+    </StudentMember>
+  </list>
+</object-stream>

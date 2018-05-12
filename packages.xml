@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<object-stream>
+  <map>
+    <entry>
+      <string>Package 3</string>
+      <string>Allowed access to gym at off-peak times.
+        €5 fee for all classes.
+        No access to deluxe changing rooms.
+      </string>
+    </entry>
+    <entry>
+      <string>Package 2</string>
+      <string>Allowed access anytime to gym.
+        €3 fee for all classes.
+        Access to all changing areas including deluxe changing rooms.
+      </string>
+    </entry>
+    <entry>
+      <string>WIT</string>
+      <string>Allowed access to gym during term time.
+        €4 fee for all classes.
+        No access to deluxe changing rooms.
+      </string>
+    </entry>
+    <entry>
+      <string>Package 1</string>
+      <string>Allowed access anytime to gym.
+        Free access to all classes.
+        Access to all changing areas including deluxe changing rooms.
+      </string>
+    </entry>
+    <entry>
+      <string>CIT</string>
+      <string>Allowed access to gym during term time.
+        €6 fee for all classes.
+        No access to deluxe changing rooms.
+      </string>
+    </entry>
+  </map>
+</object-stream>

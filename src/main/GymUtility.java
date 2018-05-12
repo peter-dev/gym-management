@@ -1,93 +1,167 @@
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.util.HashMap;
 
+/**
+ * A utility class (or helper class) that has only static methods and encapsulates no state (fields)
+ */
 public class GymUtility {
 
-    // predefined list of constants used to determine BMI category
-    // https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
-    public enum BmiLevel {
-        L1(16d, "SEVERELY UNDERWEIGHT"), L2(18.5d, "UNDERWEIGHT"), L3(25d, "NORMAL"), L4(30d, "OVERWEIGHT"), L5(35d, "MODERATELY OBESE"), L6(35d, "SEVERELY OBESE");
+  /** Types of gym users that can be used. */
+  public enum UserType {
+    /** Member user */
+    MEMBER,
+    /** Trainer user */
+    TRAINER
+  }
 
-        private final double bmiRange;
-        private final String bmiDescription;
+  /** A list of constants that can be used to determine BMI category */
+  public enum BmiLevel {
+    L1(16d, "SEVERELY UNDERWEIGHT"),
+    L2(18.5d, "UNDERWEIGHT"),
+    L3(25d, "NORMAL"),
+    L4(30d, "OVERWEIGHT"),
+    L5(35d, "MODERATELY OBESE"),
+    L6(35d, "SEVERELY OBESE");
 
-        BmiLevel(double bmiRange, String bmiDescription) {
-            this.bmiRange = bmiRange;
-            this.bmiDescription = bmiDescription;
-        }
+    private final double bmiRange;
+    private final String bmiDescription;
 
-        double getBmiRange() { return bmiRange; }
-        String getBmiDescription() { return bmiDescription; }
+    BmiLevel(double bmiRange, String bmiDescription) {
+      this.bmiRange = bmiRange;
+      this.bmiDescription = bmiDescription;
     }
 
-
-
-    public static double calculateBMI(Member member, Assessment assessment) {
-        float weight = assessment.getWeight();
-        float height = member.getHeight();
-        double bmi = (double) weight / Math.pow(height, 2);
-        return bmi;
+    double getBmiRange() {
+      return bmiRange;
     }
 
-    public static String determineBMICategory(double bmiValue) {
+    String getBmiDescription() {
+      return bmiDescription;
+    }
+  }
 
-        if (bmiValue < BmiLevel.valueOf("L1").getBmiRange()) {
-            return BmiLevel.valueOf("L1").getBmiDescription();
-        } else if (bmiValue < BmiLevel.valueOf("L2").getBmiRange()) {
-            return BmiLevel.valueOf("L2").getBmiDescription();
-        } else if (bmiValue < BmiLevel.valueOf("L3").getBmiRange()) {
-            return BmiLevel.valueOf("L3").getBmiDescription();
-        } else if (bmiValue < BmiLevel.valueOf("L4").getBmiRange()) {
-            return BmiLevel.valueOf("L4").getBmiDescription();
-        } else if (bmiValue < BmiLevel.valueOf("L5").getBmiRange()) {
-            return BmiLevel.valueOf("L5").getBmiDescription();
-        } else {
-            return BmiLevel.valueOf("L6").getBmiDescription();
-        }
+  /**
+   * It identifies package associated with student's college name. If there is no package associated
+   * with their college, default to “Package 3”.
+   *
+   * @param packages
+   * @param collegeName
+   * @return package associated with a college name, default to "Package 3" if not found
+   */
+  public static String identifyPackage(HashMap<String, String> packages, String collegeName) {
 
+    if (packages.containsKey(collegeName.trim())) {
+      return packages.get(collegeName.trim());
+    } // OK get
+
+    return "Package 3";
+  }
+
+  /**
+   * Return the BMI for the member based on the calculation: BMI is weight divided by the square of
+   * the height.
+   *
+   * @param member a member representation that stores the height of the gym member
+   * @param assessment assessment that contains the latest weight
+   * @return calculated bmi value
+   */
+  public static double calculateBMI(Member member, Assessment assessment) {
+    float weight = assessment.getWeight();
+    float height = member.getHeight();
+    double bmi = (double) weight / Math.pow(height, 2);
+    return bmi;
+  }
+
+  /**
+   * Return the category the BMI belongs to, based on the predefined values in BmiLevel Class
+   *
+   * @param bmiValue calculated BMI value
+   * @return the category the BMI belongs to
+   */
+  public static String determineBMICategory(double bmiValue) {
+
+    if (bmiValue < BmiLevel.valueOf("L1").getBmiRange()) {
+      return BmiLevel.valueOf("L1").getBmiDescription();
+    } else if (bmiValue < BmiLevel.valueOf("L2").getBmiRange()) {
+      return BmiLevel.valueOf("L2").getBmiDescription();
+    } else if (bmiValue < BmiLevel.valueOf("L3").getBmiRange()) {
+      return BmiLevel.valueOf("L3").getBmiDescription();
+    } else if (bmiValue < BmiLevel.valueOf("L4").getBmiRange()) {
+      return BmiLevel.valueOf("L4").getBmiDescription();
+    } else if (bmiValue < BmiLevel.valueOf("L5").getBmiRange()) {
+      return BmiLevel.valueOf("L5").getBmiDescription();
+    } else {
+      return BmiLevel.valueOf("L6").getBmiDescription();
+    }
+  }
+
+  /**
+   * Returns a boolean to indicate if the member has an ideal body weight.
+   *
+   * @param member a representation of a gym member
+   * @param assessment latest member's assessment with that stores required weight information
+   * @return
+   */
+  public static boolean isIdealBodyWeight(Member member, Assessment assessment) {
+
+    // member weight and height
+    float weightInKg = assessment.getWeight();
+    float heightInInch = metreToInchConversion(member.getHeight());
+    String gender = member.getGender();
+
+    // formula values
+    float baseHeightInInch = 60f; // 5 feet x 12 = 60 inches
+    float baseWeightMale = 50f;
+    float baseWeightFemale = 45.5f;
+    float incrementalWeight = 2.3f;
+
+    // if member is 5 feet or less return 50kg for male and 45.5kg for female
+    if (heightInInch <= baseHeightInInch) {
+      return (gender.equals("M"))
+          ? (weightInKg == baseWeightMale)
+          : (weightInKg == baseWeightFemale);
     }
 
-    public static boolean isIdealBodyWeight(Member member, Assessment assessment) {
+    // assign correct base weight
+    float baseWeight = (gender.equals("M")) ? baseWeightMale : baseWeightFemale;
 
-        // member weight and height
-        float weightInKg = assessment.getWeight();
-        float heightInInch = metreToInchConversion(member.getHeight());
-        String gender = member.getGender();
+    // add 2.3kg for each inch over 5 feet (60 inches)
+    float calculatedIdeal = baseWeight + (incrementalWeight * (heightInInch - baseHeightInInch));
 
+    return (weightInKg > calculatedIdeal - 0.2f && weightInKg < calculatedIdeal + 0.2f);
+  }
 
-        // formula values
-        float baseHeightInInch = 60f;   // 5 feet x 12 = 60 inches
-        float baseWeightMale = 50f;
-        float baseWeightFemale = 45.5f;
-        float incrementalWeight = 2.3f;
+  /**
+   * Converts height in meters to inches.
+   *
+   * @param lengthMeters length in meters as float
+   * @return length in inches
+   */
+  public static float metreToInchConversion(float lengthMeters) {
+    // 1 metre = 39.3701 inch
+    return (lengthMeters * 39.3701f);
+  }
 
-        // if member is 5 feet or less return 50kg for male and 45.5kg for female
-        if (heightInInch <= baseHeightInInch) {
-            return (gender.equals("M")) ? (weightInKg == baseWeightMale) : (weightInKg == baseWeightFemale);
-        }
+  /**
+   * Converts weight in kgs to pounds.
+   *
+   * @param weightKg weight in kgs as float
+   * @return weight in lbs
+   */
+  public static float kgToPoundConversion(float weightKg) {
+    // 1 kg = 2.20462 pound
+    return (weightKg * 2.20462f);
+  }
 
-        // assign correct base weight
-        float baseWeight = (gender.equals("M")) ? baseWeightMale : baseWeightFemale;
-
-        // add 2.3kg for each inch over 5 feet (60 inches)
-        float calculatedIdeal = baseWeight + (incrementalWeight * (heightInInch - baseHeightInInch));
-        //System.out.println("Original Expected: " + weightInKg + " Result: " + calculatedIdeal);
-        //System.out.println("Rounded  Expected: " + roundFloatTo2Decimal(weightInKg)  + " Result: " + roundFloatTo2Decimal(calculatedIdeal));
-
-        return (roundFloatTo2Decimal(weightInKg) == roundFloatTo2Decimal(calculatedIdeal));
-    }
-
-
-    public static float metreToInchConversion(float lengthMeters) {
-        // 1 metre = 39.3701 inch
-        return (lengthMeters * 39.3701f);
-    }
-
-    public static float roundFloatTo2Decimal(float number) {
-        // round up float number to 2 decimal places
-        DecimalFormat twoDForm = new DecimalFormat("#.##");
-        return Float.valueOf(twoDForm.format(number));
-    }
-
-
+  /**
+   * Round up float number to one decimal place.
+   *
+   * @param number number to be rounded up as float
+   * @return number rounded to one decimal place
+   */
+  public static float roundFloatTo1Decimal(float number) {
+    // round up float number to 1 decimal place
+    DecimalFormat oneDForm = new DecimalFormat("#.#");
+    return Float.valueOf(oneDForm.format(number));
+  }
 }
