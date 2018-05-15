@@ -71,5 +71,15 @@
       <studentId>WIT00001</studentId>
       <collegeName>WIT</collegeName>
     </StudentMember>
+    <PremiumMember>
+      <name>Peter McCarthy</name>
+      <email>peter.mccarthy@premium.com</email>
+      <address>Waterford, Ireland</address>
+      <gender>M</gender>
+      <height>1.8</height>
+      <startWeight>75.0</startWeight>
+      <chosenPackage>Package 3</chosenPackage>
+      <assessments></assessments>
+    </PremiumMember>
   </list>
 </object-stream>

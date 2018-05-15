@@ -1,18 +1,9 @@
 import java.text.DecimalFormat;
-import java.util.HashMap;
 
 /**
  * A utility class (or helper class) that has only static methods and encapsulates no state (fields)
  */
 public class GymUtility {
-
-  /** Types of gym users that can be used. */
-  public enum UserType {
-    /** Member user */
-    MEMBER,
-    /** Trainer user */
-    TRAINER
-  }
 
   /** A list of constants that can be used to determine BMI category */
   public enum BmiLevel {
@@ -38,23 +29,6 @@ public class GymUtility {
     String getBmiDescription() {
       return bmiDescription;
     }
-  }
-
-  /**
-   * It identifies package associated with student's college name. If there is no package associated
-   * with their college, default to “Package 3”.
-   *
-   * @param packages
-   * @param collegeName
-   * @return package associated with a college name, default to "Package 3" if not found
-   */
-  public static String identifyPackage(HashMap<String, String> packages, String collegeName) {
-
-    if (packages.containsKey(collegeName.trim())) {
-      return packages.get(collegeName.trim());
-    } // OK get
-
-    return "Package 3";
   }
 
   /**

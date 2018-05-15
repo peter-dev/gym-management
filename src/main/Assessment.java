@@ -132,4 +132,21 @@ public class Assessment {
   public void setTrainer(String trainer) {
     this.trainer = trainer;
   }
+
+  @Override
+  public String toString() {
+    return "\nWeight:           "
+        + weight
+        + " kgs"
+        + "\nThigh:            "
+        + thigh
+        + " inches"
+        + "\nWaist:            "
+        + waist
+        + " inches"
+        + "\nComment:          "
+        + comment
+        + "\nTrainer:          "
+        + trainer;
+  }
 }

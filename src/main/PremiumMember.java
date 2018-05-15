@@ -35,4 +35,9 @@ public class PremiumMember extends Member {
   public void chosenPackage(String packageChoice) {
     this.chosenPackage = packageChoice;
   }
+
+  @Override
+  public String toString() {
+    return super.toString() + "\nAssessments:      " + getAssessments().size();
+  }
 }

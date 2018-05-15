@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 
 /**
@@ -264,6 +263,7 @@ public class GymAPI {
     }
     String memberDetails = "";
     for (Member m : members) {
+      if (m.getAssessments().isEmpty()) continue;
       memberDetails +=
           m.getName()
               + ": "
@@ -287,20 +287,69 @@ public class GymAPI {
   public void store() throws Exception {
 
     ArrayList<Person> gymMembers = new ArrayList<>();
-    /*gymMembers.add(new Trainer("bob.harper@trainer.com", "Bob Harper", "Nashville, Tennessee, U.S.", "M", "Personal Trainer"));
-    gymMembers.add(new Trainer("lou.ferrigno@trainer.com", "Lou Ferrigno", "Brooklyn, New York, U.S.", "M", "Fitness Trainer"));
+    /*gymMembers.add(
+        new Trainer(
+            "bob.harper@trainer.com",
+            "Bob Harper",
+            "Nashville, Tennessee, U.S.",
+            "M",
+            "Personal Trainer"));
+    gymMembers.add(
+        new Trainer(
+            "lou.ferrigno@trainer.com",
+            "Lou Ferrigno",
+            "Brooklyn, New York, U.S.",
+            "M",
+            "Fitness Trainer"));
 
-    Member member1 = new StudentMember("piotr.baran@student.com", "Piotr Baran", "Cork, Ireland", "M", 2f, 80f, "Package 3", "MIT00001", "MIT");
-    Assessment assessment1 = new Assessment( 82f, 0f, 0f, "Well done.", "Bob Harper, Personal Trainer");
-    member1.getAssessments().put("18/04/25",assessment1);
+    Member member1 =
+        new StudentMember(
+            "piotr.baran@student.com",
+            "Piotr Baran",
+            "Cork, Ireland",
+            "M",
+            2f,
+            80f,
+            "Package 3",
+            "MIT00001",
+            "MIT");
+    Assessment assessment1 =
+        new Assessment(82f, 0f, 0f, "Well done.", "Bob Harper, Personal Trainer");
+    member1.getAssessments().put("18/04/25", assessment1);
 
-    Member member2 = new StudentMember("tara.baran@student.com", "Tara Baran", "Cork, Ireland", "F", 1.6f, 50f, "WIT", "WIT00001", "WIT");
-    Assessment assessment2 = new Assessment( 48f, 0f, 0f, "Well done. You are getting there.", "Lou Ferrigno, Fitness Trainer");
-    Assessment assessment2_1 = new Assessment( 47f, 0f, 0f, "Well done. You achieved your goal.", "Lou Ferrigno, Fitness Trainer");
+    Member member2 =
+        new StudentMember(
+            "tara.baran@student.com",
+            "Tara Baran",
+            "Cork, Ireland",
+            "F",
+            1.6f,
+            50f,
+            "WIT",
+            "WIT00001",
+            "WIT");
+    Assessment assessment2 =
+        new Assessment(
+            48f, 0f, 0f, "Well done. You are getting there.", "Lou Ferrigno, Fitness Trainer");
+    Assessment assessment2_1 =
+        new Assessment(
+            47f, 0f, 0f, "Well done. You achieved your goal.", "Lou Ferrigno, Fitness Trainer");
     member2.getAssessments().put("18/04/10", assessment2);
     member2.getAssessments().put("18/05/05", assessment2_1);
+
+    Member member3 =
+        new PremiumMember(
+            "peter.mccarthy@premium.com",
+            "Peter McCarthy",
+            "Waterford, Ireland",
+            "M",
+            1.8f,
+            75f,
+            "Package 3");
+
     gymMembers.add(member1);
-    gymMembers.add(member2);*/
+    gymMembers.add(member2);
+    gymMembers.add(member3);*/
 
     gymMembers.addAll(members);
     gymMembers.addAll(trainers);

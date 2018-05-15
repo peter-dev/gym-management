@@ -42,7 +42,8 @@ public class Member extends Person {
   }
 
   /**
-   * Height is measured in metres and must be between 1 and 3 inclusive.
+   * Height is measured in metres and must be between 1 and 3 inclusive. Any height outside the
+   * range will be defaulted to 1.0 meter
    *
    * @param height
    */
@@ -50,12 +51,13 @@ public class Member extends Person {
     if (height >= 1.0f && height <= 3.0f) {
       this.height = height;
     } else {
-      this.height = 0;
+      this.height = 1.0f;
     }
   }
 
   /**
-   * Starting Weight is measured in kgs and must be between 35 and 250.
+   * Starting Weight is measured in kgs and must be between 35 and 250. Any weight outside the range
+   * will be defaulted to 35.0 kgs
    *
    * @param startWeight
    */
@@ -63,7 +65,7 @@ public class Member extends Person {
     if (startWeight >= 35.0f && startWeight <= 250.0f) {
       this.startWeight = startWeight;
     } else {
-      this.startWeight = 0;
+      this.startWeight = 35.0f;
     }
   }
 
@@ -151,10 +153,12 @@ public class Member extends Person {
   @Override
   public String toString() {
     return super.toString()
-    + "\nHeight:           "
-        + height + " m"
+        + "\nHeight:           "
+        + height
+        + " m"
         + "\nStart Weight:     "
-        + startWeight + " kgs"
+        + startWeight
+        + " kgs"
         + "\nChosen Package:   "
         + chosenPackage;
   }

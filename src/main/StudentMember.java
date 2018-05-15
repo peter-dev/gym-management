@@ -65,6 +65,12 @@ public class StudentMember extends Member {
 
   @Override
   public String toString() {
-    return super.toString() + "\nCollege Name:     " + collegeName;
+    return super.toString()
+        + "\nCollege Name:     "
+        + collegeName
+        + "\nStudent id:       "
+        + studentId
+        + "\nAssessments:      "
+        + getAssessments().size();
   }
 }
